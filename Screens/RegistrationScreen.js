@@ -23,6 +23,12 @@ export const RegistrationScreen = () => {
   const [isFocusEmail, setIsFocusEmail] = useState(false);
   const [isFocusPassword, setIsFocusPassword] = useState(false);
 
+  const [login, setLogin] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const [showPassword, setShowPassword] = useState(false);
+
   if (!fontsLoaded) {
     return null;
   }
@@ -30,6 +36,17 @@ export const RegistrationScreen = () => {
   const keyboardHide = () => {
     setIsShowKeyboard(false);
     Keyboard.dismiss();
+  };
+
+  const onRegister = () => {
+    console.log({
+      login,
+      email,
+      password,
+    });
+    setLogin("");
+    setEmail("");
+    setPassword("");
   };
 
   return (
@@ -66,6 +83,8 @@ export const RegistrationScreen = () => {
                 setIsShowKeyboard(true);
               }}
               onBlur={() => setIsFocusLogin(false)}
+              value={login}
+              onChangeText={setLogin}
               placeholderTextColor="#BDBDBD"
               placeholder="Логін"
             ></TextInput>
@@ -80,6 +99,8 @@ export const RegistrationScreen = () => {
                 setIsShowKeyboard(true);
               }}
               onBlur={() => setIsFocusEmail(false)}
+              value={email}
+              onChangeText={setEmail}
               placeholderTextColor="#BDBDBD"
               placeholder="Адреса електронної пошти"
             ></TextInput>
@@ -90,20 +111,28 @@ export const RegistrationScreen = () => {
                   borderColor: isFocusPassword ? "#FF6C00" : "#F6F6F6",
                   backgroundColor: isFocusPassword ? "#FFFFFF" : "#F6F6F6",
                 }}
-                secureTextEntry={true}
+                secureTextEntry={!showPassword}
                 onFocus={() => {
                   setIsFocusPassword(true);
                   setIsShowKeyboard(true);
                 }}
                 onBlur={() => setIsFocusPassword(false)}
+                value={password}
+                onChangeText={setPassword}
                 placeholderTextColor="#BDBDBD"
                 placeholder="Пароль"
               ></TextInput>
-              <Text style={styles.show}>Показати</Text>
+              <Text
+                onPress={() => setShowPassword(!showPassword)}
+                style={styles.show}
+              >
+                {showPassword ? "Приховати" : "Показати"}
+              </Text>
             </View>
             <TouchableOpacity
               activeOpacity={0.8}
               style={{ ...styles.btn, marginTop: isShowKeyboard ? 50 : 0 }}
+              onPress={onRegister}
             >
               <Text style={styles.btnText}>Зареєстуватися</Text>
             </TouchableOpacity>

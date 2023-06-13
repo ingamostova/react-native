@@ -19,9 +19,13 @@ export const LoginScreen = () => {
   });
 
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
-  const [isFocusLogin, setIsFocusLogin] = useState(false);
   const [isFocusEmail, setIsFocusEmail] = useState(false);
   const [isFocusPassword, setIsFocusPassword] = useState(false);
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const [showPassword, setShowPassword] = useState(false);
 
   if (!fontsLoaded) {
     return null;
@@ -30,6 +34,15 @@ export const LoginScreen = () => {
   const keyboardHide = () => {
     setIsShowKeyboard(false);
     Keyboard.dismiss();
+  };
+
+  const onLogin = () => {
+    console.log({
+      email,
+      password,
+    });
+    setEmail("");
+    setPassword("");
   };
 
   return (
@@ -55,6 +68,8 @@ export const LoginScreen = () => {
                 setIsShowKeyboard(true);
               }}
               onBlur={() => setIsFocusEmail(false)}
+              value={email}
+              onChangeText={setEmail}
               placeholderTextColor="#BDBDBD"
               placeholder="Адреса електронної пошти"
             ></TextInput>
@@ -65,20 +80,28 @@ export const LoginScreen = () => {
                   borderColor: isFocusPassword ? "#FF6C00" : "#F6F6F6",
                   backgroundColor: isFocusPassword ? "#FFFFFF" : "#F6F6F6",
                 }}
-                secureTextEntry={true}
+                secureTextEntry={!showPassword}
                 onFocus={() => {
                   setIsFocusPassword(true);
                   setIsShowKeyboard(true);
                 }}
                 onBlur={() => setIsFocusPassword(false)}
+                value={password}
+                onChangeText={setPassword}
                 placeholderTextColor="#BDBDBD"
                 placeholder="Пароль"
               ></TextInput>
-              <Text style={styles.show}>Показати</Text>
+              <Text
+                onPress={() => setShowPassword(!showPassword)}
+                style={styles.show}
+              >
+                {showPassword ? "Приховати" : "Показати"}
+              </Text>
             </View>
             <TouchableOpacity
               activeOpacity={0.8}
               style={{ ...styles.btn, marginTop: isShowKeyboard ? 50 : 0 }}
+              onPress={onLogin}
             >
               <Text style={styles.btnText}>Увійти</Text>
             </TouchableOpacity>
