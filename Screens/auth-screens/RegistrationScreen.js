@@ -48,6 +48,7 @@ export const RegistrationScreen = ({ navigation }) => {
     setLogin("");
     setEmail("");
     setPassword("");
+    navigation.navigate("Home");
   };
 
   return (
