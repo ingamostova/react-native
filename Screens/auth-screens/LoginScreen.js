@@ -11,14 +11,8 @@ import {
   Keyboard,
   TouchableWithoutFeedback,
 } from "react-native";
-// import { useFonts } from "expo-font";
 
 export const LoginScreen = ({ navigation }) => {
-  // const [fontsLoaded] = useFonts({
-  //   "Roboto-Regular": require("../assets/fonts/Roboto-Regular.ttf"),
-  //   "Roboto-Medium": require("../assets/fonts/Roboto-Medium.ttf"),
-  // });
-
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
   const [isFocusEmail, setIsFocusEmail] = useState(false);
   const [isFocusPassword, setIsFocusPassword] = useState(false);
@@ -27,10 +21,6 @@ export const LoginScreen = ({ navigation }) => {
   const [password, setPassword] = useState("");
 
   const [showPassword, setShowPassword] = useState(false);
-
-  // if (!fontsLoaded) {
-  //   return null;
-  // }
 
   const keyboardHide = () => {
     setIsShowKeyboard(false);
@@ -47,11 +37,11 @@ export const LoginScreen = ({ navigation }) => {
   };
 
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
-      style={styles.container}
-    >
-      <TouchableWithoutFeedback onPress={keyboardHide}>
+    <TouchableWithoutFeedback onPress={keyboardHide}>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        style={styles.container}
+      >
         {/* <View style={styles.containerBig}> */}
         <ImageBackground
           source={require("../../assets/images/bg.png")}
@@ -126,8 +116,8 @@ export const LoginScreen = ({ navigation }) => {
           </View>
         </ImageBackground>
         {/* </View> */}
-      </TouchableWithoutFeedback>
-    </KeyboardAvoidingView>
+      </KeyboardAvoidingView>
+    </TouchableWithoutFeedback>
   );
 };
 

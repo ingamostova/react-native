@@ -6,7 +6,7 @@ import { Feather } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 
-import { PostsScren } from "./PostsScreen";
+import { PostsScreen } from "./PostsScreen";
 import { CreatePostsScreen } from "./CreatePostsScreen";
 import { ProfileScreen } from "./ProfileScreen";
 
@@ -31,7 +31,7 @@ export const Home = () => {
           tabBarIconStyle: { marginTop: 17, marginRight: -50 },
         }}
         name="Posts"
-        component={PostsScren}
+        component={PostsScreen}
       />
       <MainTab.Screen
         options={{
