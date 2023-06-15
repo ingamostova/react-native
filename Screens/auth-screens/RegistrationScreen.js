@@ -11,14 +11,8 @@ import {
   Keyboard,
   TouchableWithoutFeedback,
 } from "react-native";
-// import { useFonts } from "expo-font";
 
 export const RegistrationScreen = ({ navigation }) => {
-  // const [fontsLoaded] = useFonts({
-  //   "Roboto-Regular": require("../assets/fonts/Roboto-Regular.ttf"),
-  //   "Roboto-Medium": require("../assets/fonts/Roboto-Medium.ttf"),
-  // });
-
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
   const [isFocusLogin, setIsFocusLogin] = useState(false);
   const [isFocusEmail, setIsFocusEmail] = useState(false);
@@ -29,10 +23,6 @@ export const RegistrationScreen = ({ navigation }) => {
   const [password, setPassword] = useState("");
 
   const [showPassword, setShowPassword] = useState(false);
-
-  // if (!fontsLoaded) {
-  //   return null;
-  // }
 
   const keyboardHide = () => {
     setIsShowKeyboard(false);
